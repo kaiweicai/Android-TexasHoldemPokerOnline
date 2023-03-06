@@ -142,6 +142,11 @@ public class UserController {
         }
     }
 
+    @GetMapping("/test")
+    public ResponseEntity<?> test() {
+        return ResponseEntity.ok("Test");
+    }
+
     @PostMapping("/{userId}/image")
     public ResponseEntity<?> updateUserImage(@PathVariable String userId, @RequestHeader(AUTHORIZATION_HEADER) String jwtToken, @RequestBody User user) {
         try {

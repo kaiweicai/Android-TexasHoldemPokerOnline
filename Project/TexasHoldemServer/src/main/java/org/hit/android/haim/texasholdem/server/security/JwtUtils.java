@@ -23,14 +23,14 @@ import java.security.Key;
 public class JwtUtils {
     private static final String USER_NAME = "userName";
 
-    @Value("${server.ssl.key-store}")
-    private String keyStoreFile;
-
-    @Value("${server.ssl.key-store-password}")
-    private String keyStorePass;
-
-    @Value("${server.ssl.key-alias}")
-    private String keyStoreAlias;
+//    @Value("${server.ssl.key-store}")
+//    private String keyStoreFile;
+//
+//    @Value("${server.ssl.key-store-password}")
+//    private String keyStorePass;
+//
+//    @Value("${server.ssl.key-alias}")
+//    private String keyStoreAlias;
 
     /**
      * A secret key to use for signing the JWT.<br/>

@@ -3,6 +3,7 @@ package org.hit.android.haim.texasholdem.view.activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Debug;
 import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import org.hit.android.haim.texasholdem.R;
 public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        Debug.waitForDebugger();
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_splash);

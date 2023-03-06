@@ -40,7 +40,8 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
  */
 public class TexasHoldemWebService {
     private static final String LOGGER = TexasHoldemWebService.class.getSimpleName();
-    private static final String BACKEND_URL = "********"; // EC2
+//    private static final String BACKEND_URL = "********"; // EC2
+    private static final String BACKEND_URL = "https://192.168.0.173:8443/"; // EC2
 
     /** @see UserService */
     @Getter
@@ -103,7 +104,7 @@ public class TexasHoldemWebService {
             //interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
             interceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
 
-            OkHttpClient httpClient;
+            OkHttpClient httpClient = null;
             try {
                 httpClient = createSecuredHttpClient(context, interceptor);
             } catch (Throwable t) {
@@ -138,7 +139,9 @@ public class TexasHoldemWebService {
                 .build();
 
         return new OkHttpClient.Builder()
-                .sslSocketFactory(certificates.sslSocketFactory(), certificates.trustManager())
+//                .sslSocketFactory(certificates.sslSocketFactory(), certificates.trustManager())
+                .sslSocketFactory(SSLSocketClient.getSSLSocketFactory(), certificates.trustManager())//配置
+//                .hostnameVerifier(SSLSocketClient.getHostnameVerifier())//配置
                 .hostnameVerifier(((hostname, session) -> true)) // Trust all hosts.
                 .addInterceptor(interceptor)
                 .addInterceptor(new AuthorizationHeaderInterceptor())

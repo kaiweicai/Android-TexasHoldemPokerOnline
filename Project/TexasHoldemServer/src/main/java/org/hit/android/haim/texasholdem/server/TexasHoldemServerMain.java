@@ -66,7 +66,7 @@ public class TexasHoldemServerMain {
             if (System.getProperty("os.name").toLowerCase().contains("win")) {
                 System.setProperty("org.hit.android.haim.texasholdem.logdir", "C:/temp/AndroidProjects/TexasHoldem/log");
             } else {
-                System.setProperty("org.hit.android.haim.texasholdem.logdir", "/home/ec2-user/TexasHoldem/log");
+                System.setProperty("org.hit.android.haim.texasholdem.logdir", "/home/cloudwei/TexasHoldem/log");
             }
         }
     }

@@ -5,6 +5,10 @@ plugins {
     id "io.freefair.lombok" version "5.3.0" // Project lombok, to generate getters, setters, ctors etc.
 }
 
+// task wrapper(type: Wrapper){
+//     gradleVersion = '7.2'
+// }
+
 group 'org.hit.android.haim.texasholdem'
 version '1.0'
 
