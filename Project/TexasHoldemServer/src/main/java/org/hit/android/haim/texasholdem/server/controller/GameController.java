@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.hit.android.haim.texasholdem.server.config.JwtAuthenticationFilter.AUTHORIZATION_HEADER;
@@ -66,6 +67,20 @@ public class GameController {
             }
 
             return ResponseEntity.ok(game.get());
+        } catch (Throwable t) {
+            return ControllerErrorHandler.handleServerError(t);
+        }
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<?> all() {
+        try {
+            List<GameEngine> gameList = gameService.all();
+            // if (gameList.isEmpty()) {
+            //     return ResponseEntity.notFound().build();
+            // }
+
+            return ResponseEntity.ok(gameList);
         } catch (Throwable t) {
             return ControllerErrorHandler.handleServerError(t);
         }
