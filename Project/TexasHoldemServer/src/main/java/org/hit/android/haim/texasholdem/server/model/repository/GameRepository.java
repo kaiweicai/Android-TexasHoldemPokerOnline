@@ -6,10 +6,12 @@ import org.hit.android.haim.texasholdem.common.model.game.GameEngine;
 import org.hit.android.haim.texasholdem.server.model.game.ServerGameEngine;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * A repository holding all active games.<br/>
@@ -203,6 +205,10 @@ public class GameRepository {
 
     private static class SingletonRef {
         static final GameRepository instance = new GameRepository();
+    }
+
+    public List<GameEngine> all() {
+        return games.values().stream().collect(Collectors.toList());
     }
 }
 
