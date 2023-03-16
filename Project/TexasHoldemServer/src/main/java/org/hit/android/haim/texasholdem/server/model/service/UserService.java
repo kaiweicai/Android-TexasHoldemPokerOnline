@@ -97,8 +97,8 @@ public class UserService implements UserDetailsService {
     /**
      * See {@link UserRepository#deleteAll()}
      */
-    public void deleteAll() {
-        userRepository.deleteAll();
+    public void deleteById(String id) {
+        userRepository.deleteById(id);
     }
 
     @Override

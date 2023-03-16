@@ -157,7 +157,7 @@ public class GameEngineTest {
             try {
                 // Wait enough time so current player will fold.
                 // Double the time because the scheduler runs every 3 seconds
-                Thread.sleep((long)(turnTimeMillis * 1.5));
+                Thread.sleep((long)(turnTimeMillis * 2));
             } catch (InterruptedException ignore) {
             }
             Assertions.assertFalse(currPlayer.isPlaying(), "Player supposed to fold due to time out");

@@ -1,6 +1,9 @@
 package org.hit.android.haim.texasholdem.server.controller;
 
 import com.fasterxml.jackson.databind.node.TextNode;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hit.android.haim.texasholdem.common.model.bean.game.GameSettings;
 import org.hit.android.haim.texasholdem.common.model.bean.game.Player;
 import org.hit.android.haim.texasholdem.common.model.bean.game.PlayerAction;
@@ -24,6 +27,7 @@ import static org.hit.android.haim.texasholdem.server.config.JwtAuthenticationFi
 @RestController
 @RequestMapping("/game")
 public class GameController {
+    Logger log = LogManager.getLogger(GameController.class);
     @Autowired
     private GameService gameService;
 
@@ -75,6 +79,8 @@ public class GameController {
     @GetMapping("/all")
     public ResponseEntity<?> all() {
         try {
+            log.debug("start all debug!!232");
+            log.info("start all info!!");
             List<GameEngine> gameList = gameService.all();
             // if (gameList.isEmpty()) {
             //     return ResponseEntity.notFound().build();

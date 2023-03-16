@@ -1,3 +1,16 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven {
+            url "https://maven.aliyun.com/nexus/content/groups/public"
+//            credentials {
+//                username "${mavenUser}"
+//                password "${mavenPwd}"
+//            }
+        }
+    }
+}
+
 plugins {
     id 'java'
     id 'org.springframework.boot' version '2.4.3' // Spring boot, to have embedded web server and RESTful web services
@@ -20,7 +33,10 @@ ext {
 }
 
 repositories {
-    mavenCentral()
+    // mavenCentral()
+    maven {
+        url "https://maven.aliyun.com/nexus/content/groups/public"
+    }
 }
 
 java {
@@ -41,6 +57,7 @@ dependencies {
     implementation "io.jsonwebtoken:jjwt-api:${jjwtVer}" // Working with JWT
     implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVer}" // Java beans to SQL and vice versa
     implementation "org.springframework.boot:spring-boot-starter-cache:${springBootVer}"
+    developmentOnly "org.springframework.boot:spring-boot-devtools" // reload class hot refresh
     runtimeOnly "org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVer}" // Encode passwords and authenticate users
     runtimeOnly "mysql:mysql-connector-java:${mysqlConnectorVer}" // Working with MySQL
     runtimeOnly "org.apache.logging.log4j:log4j-web:2.13.3" // Log4j in servlet environment
@@ -52,6 +69,8 @@ dependencies {
     testImplementation "org.mockito:mockito-junit-jupiter:3.8.0"
     testImplementation "org.junit.jupiter:junit-jupiter-api:5.7.1"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
 }
 
 test {

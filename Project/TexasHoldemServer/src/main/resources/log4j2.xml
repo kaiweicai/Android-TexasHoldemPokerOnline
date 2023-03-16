@@ -4,7 +4,8 @@
 -->
 <Configuration status="info">
     <Properties>
-        <Property name="baseLogDir">${sys:org.hit.android.haim.texasholdem.logdir}</Property>
+        <!-- <Property name="baseLogDir">${sys:org.hit.android.haim.texasholdem.logdir}</Property> -->
+        <Property name="baseLogDir">logs/porkgames</Property>
         <Property name="mainLogPattern">%d{DATE} %-5level [%threadName] %logger{1} - %msg%n%xThrowable</Property>
     </Properties>
     <Appenders>
@@ -12,7 +13,7 @@
         <Console name="ConsoleOut" target="SYSTEM_OUT">
             <PatternLayout pattern="${mainLogPattern}"/>
             <Filters>
-                <ThresholdFilter level="warn" onMatch="DENY" onMismatch="ACCEPT"/>
+                <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="ACCEPT"/>
             </Filters>
         </Console>
         <!-- All WARN, ERROR and FATAL to System.err -->
@@ -50,11 +51,11 @@
         </RollingRandomAccessFile>
     </Appenders>
     <Loggers>
-        <Logger name="stdout" level="debug" additivity="false">
+        <Logger name="org.hit.android.haim.texasholdem.server" level="debug" additivity="true">
             <AppenderRef ref="ConsoleOut"/> <!-- See logs in console when running from intellij -->
             <AppenderRef ref="stdoutlog"/> <!-- Always see logs in stdout log file -->
         </Logger>
-        <Logger name="stderr" level="debug" additivity="false">
+        <Logger name="stderr" level="error" additivity="false">
             <AppenderRef ref="ConsoleErr"/> <!-- See logs in console when running from intellij -->
             <AppenderRef ref="stderrlog"/> <!-- Always see errors in stderr log file -->
         </Logger>

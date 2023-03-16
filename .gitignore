@@ -89,3 +89,4 @@ gradlew
 gradle.bat
 gradlew.bat
 gradle/
+.vscode
