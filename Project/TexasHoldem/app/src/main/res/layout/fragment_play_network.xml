@@ -75,7 +75,7 @@
             android:layout_marginHorizontal="40dp"
             android:background="@drawable/group_box"
             android:orientation="vertical"
-            android:padding="6dp">
+            android:padding="5dp">
 
             <TextView
                 android:layout_width="match_parent"

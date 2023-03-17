@@ -54,7 +54,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                .cors()
 //            .and()
                 .authorizeRequests()
-                .antMatchers("/user/signin", "/user/test", "/game/all", "/user/signup", "/", "/favicon.ico").permitAll() // Do not authenticate these requests
+                .antMatchers("/swagger-ui.html",
+                        "/swagger-ui/*",
+                        "/swagger-resources/**",
+                        "/v2/api-docs",
+                        "/v3/api-docs",
+                        "/webjars/**"
+                        ,"/user/signin", "/user/test", "/game/all", "/user/signup", "/", "/favicon.ico").permitAll() // Do not authenticate these requests
                 .anyRequest().authenticated() // All other requests need to be authenticated
                 .and()
 //            .requiresChannel()
