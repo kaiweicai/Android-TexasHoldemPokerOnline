@@ -1,12 +1,8 @@
 package org.hit.android.haim.texasholdem.server.config;
 
-import org.apache.catalina.Context;
-import org.apache.catalina.connector.Connector;
-import org.apache.tomcat.util.descriptor.web.SecurityCollection;
-import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
+import java.util.Collections;
+
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
-import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.concurrent.ConcurrentMapCache;
@@ -20,8 +16,6 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
-
-import java.util.Collections;
 
 /**
  * A class to configure Spring boot.<br/>
@@ -64,33 +58,33 @@ public class SpringBootConfiguration {
         return new JwtAuthenticationFilter();
     }
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    // @Bean
+    // public CorsConfigurationSource corsConfigurationSource() {
+    //     final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 
-        CorsConfiguration corsConfiguration = new CorsConfiguration().applyPermitDefaultValues();
-        source.registerCorsConfiguration("/**", corsConfiguration);
+    //     CorsConfiguration corsConfiguration = new CorsConfiguration().applyPermitDefaultValues();
+    //     source.registerCorsConfiguration("/**", corsConfiguration);
 
-        return source;
-    }
+    //     return source;
+    // }
 
     // Redirect all HTTP requests to HTTPS
-    @Bean
-    public ServletWebServerFactory servletContainer() {
-        TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory() {
-            @Override
-            protected void postProcessContext(Context context) {
-                SecurityConstraint securityConstraint = new SecurityConstraint();
-                securityConstraint.setUserConstraint("CONFIDENTIAL");
-                SecurityCollection collection = new SecurityCollection();
-                collection.addPattern("/*");
-                securityConstraint.addCollection(collection);
-                context.addConstraint(securityConstraint);
-            }
-        };
-        tomcat.addAdditionalTomcatConnectors(getHttpConnector());
-        return tomcat;
-    }
+    // @Bean
+    // public ServletWebServerFactory servletContainer() {
+    //     TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory() {
+    //         @Override
+    //         protected void postProcessContext(Context context) {
+    //             SecurityConstraint securityConstraint = new SecurityConstraint();
+    //             securityConstraint.setUserConstraint("CONFIDENTIAL");
+    //             SecurityCollection collection = new SecurityCollection();
+    //             collection.addPattern("/*");
+    //             securityConstraint.addCollection(collection);
+    //             // context.addConstraint(securityConstraint);
+    //         }
+    //     };
+    //     // tomcat.addAdditionalTomcatConnectors(getHttpConnector());
+    //     return tomcat;
+    // }
 
     @Bean
     public CommonsRequestLoggingFilter requestLoggingFilter() {
@@ -103,13 +97,13 @@ public class SpringBootConfiguration {
         return loggingFilter;
     }
 
-    private Connector getHttpConnector() {
-        Connector connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
-        connector.setScheme("http");
-        connector.setPort(8080);
-        connector.setSecure(false);
-        connector.setRedirectPort(serverPort);
-        return connector;
-    }
+    // private Connector getHttpConnector() {
+    //     Connector connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
+    //     connector.setScheme("http");
+    //     connector.setPort(8080);
+    //     connector.setSecure(false);
+    //     connector.setRedirectPort(serverPort);
+    //     return connector;
+    // }
 }
 

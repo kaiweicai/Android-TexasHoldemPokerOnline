@@ -79,7 +79,7 @@ public class GameController {
     @GetMapping("/all")
     public ResponseEntity<?> all() {
         try {
-            log.debug("start all debug!!232");
+            log.debug("start all debug!!");
             log.info("start all info!!");
             List<GameEngine> gameList = gameService.all();
             // if (gameList.isEmpty()) {

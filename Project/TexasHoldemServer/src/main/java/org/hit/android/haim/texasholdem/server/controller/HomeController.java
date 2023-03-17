@@ -1,6 +1,6 @@
 package org.hit.android.haim.texasholdem.server.controller;
 
-import org.apache.tomcat.util.http.fileupload.IOUtils;
+//import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,12 +52,12 @@ public class HomeController {
         //return HTML_PAGE.replace("##", "You have to sign in using Texas Holdem application in order to access services.");
     }
 
-    @GetMapping(path = "/favicon.ico", produces = "image/ico")
-    @ResponseBody
-    public byte[] favIcon() throws IOException {
-        byte[] icon = new byte[32768];
-        int read = IOUtils.read(getClass().getClassLoader().getResourceAsStream("favicon.ico"), icon, 0, 32768);
-        return Arrays.copyOf(icon, read);
-    }
+//    @GetMapping(path = "/favicon.ico", produces = "image/ico")
+//    @ResponseBody
+//    public byte[] favIcon() throws IOException {
+//        byte[] icon = new byte[32768];
+//        int read = IOUtils.read(getClass().getClassLoader().getResourceAsStream("favicon.ico"), icon, 0, 32768);
+//        return Arrays.copyOf(icon, read);
+//    }
 }
 

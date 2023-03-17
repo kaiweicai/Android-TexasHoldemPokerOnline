@@ -52,16 +52,17 @@
     </Appenders>
     <Loggers>
         <Logger name="org.hit.android.haim.texasholdem.server" level="debug" additivity="true">
-            <AppenderRef ref="ConsoleOut"/> <!-- See logs in console when running from intellij -->
+            <!-- <AppenderRef ref="ConsoleOut"/> See logs in console when running from intellij -->
             <AppenderRef ref="stdoutlog"/> <!-- Always see logs in stdout log file -->
         </Logger>
         <Logger name="stderr" level="error" additivity="false">
             <AppenderRef ref="ConsoleErr"/> <!-- See logs in console when running from intellij -->
             <AppenderRef ref="stderrlog"/> <!-- Always see errors in stderr log file -->
         </Logger>
-        <Root level="info">
+        <Root level="debug">
             <AppenderRef ref="stderrlog"/> <!-- When there are errors, print them to stderr log file as well -->
             <AppenderRef ref="mainLog"/>
+            <AppenderRef ref="ConsoleOut"/>
         </Root>
     </Loggers>
 </Configuration>
