@@ -27,15 +27,6 @@ public class ChipsTest {
     }
 
     @Test
-    public void testChipsShorthand_use100000000000_expect100B() {
-        long amount = 100000000000L;
-        String shorthand = "100B";
-
-        Chips chips = new Chips(amount);
-        Assertions.assertEquals(shorthand, chips.toShorthand(), "Shorthand of " + amount + " is " + shorthand);
-    }
-
-    @Test
     public void testChipsShorthand_use1200_expect1Point2K() {
         long amount = 1200;
         String shorthand = "1.2K";
@@ -84,6 +75,32 @@ public class ChipsTest {
     public void testChipsShorthand_use3211020_expect3Point21M() {
         long amount = 3211020;
         String shorthand = "3.21M";
+
+        Chips chips = new Chips(amount);
+        Assertions.assertEquals(shorthand, chips.toShorthand(), "Shorthand of " + amount + " is " + shorthand);
+    }
+
+    @Test
+    public void testChipsShorthand_use100000000000_expect100B() {
+        long amount = 100000000000L;
+        String shorthand = "100B";
+
+        Chips chips = new Chips(amount);
+        Assertions.assertEquals(shorthand, chips.toShorthand(), "Shorthand of " + amount + " is " + shorthand);
+    }
+
+    @Test
+    public void testChipsShorthand_use300100000000_expect300point1B() {
+        long amount = 300100000000L;
+        String shorthand = "300.1B";
+
+        Chips chips = new Chips(amount);
+        Assertions.assertEquals(shorthand, chips.toShorthand(), "Shorthand of " + amount + " is " + shorthand);
+    }
+    @Test
+    public void testChipsShorthand_use300000100000_expect300point001B() {
+        long amount = 300001100000L;
+        String shorthand = "300.001B";
 
         Chips chips = new Chips(amount);
         Assertions.assertEquals(shorthand, chips.toShorthand(), "Shorthand of " + amount + " is " + shorthand);

@@ -109,7 +109,7 @@ public class Chips {
             shorthand.append(String.format("%.3fB", chips / BILLION));
         }
 
-        // No reason to paint trailing zeroes. We'd like to show 1K and not 1.0K, or 1.2 and not 1.20
+        // No reason to paint trailing zeroes. We'd like to show 1K and not 1.0K, or 1.2k and not 1.20k
         while (shorthand.charAt(shorthand.length() - 2) == '0') {
             shorthand.deleteCharAt(shorthand.length() - 2);
         }
