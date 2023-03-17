@@ -50,15 +50,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf().disable().cors()
-            .and()
-            .authorizeRequests().antMatchers("/user/signin","/user/test","/game/all", "/user/signup", "/", "/favicon.ico").permitAll() // Do not authenticate these requests
-            .anyRequest().authenticated() // All other requests need to be authenticated
-            .and()
-            .requiresChannel().anyRequest().requiresSecure()
-            .and()
-            // make sure we use stateless session; session won't be used to store user's state.
-            .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        httpSecurity.csrf().disable()
+//                .cors()
+//            .and()
+                .authorizeRequests()
+                .antMatchers("/user/signin", "/user/test", "/game/all", "/user/signup", "/", "/favicon.ico").permitAll() // Do not authenticate these requests
+                .anyRequest().authenticated() // All other requests need to be authenticated
+                .and()
+//            .requiresChannel()
+//                .anyRequest()
+//                .requiresSecure()
+//            .and()
+                // make sure we use stateless session; session won't be used to store user's state.
+                .exceptionHandling()
+                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         // Add a filter to validate the tokens with every request
         httpSecurity.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

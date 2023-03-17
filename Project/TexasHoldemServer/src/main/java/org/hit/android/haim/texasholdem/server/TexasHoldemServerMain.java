@@ -41,12 +41,12 @@ public class TexasHoldemServerMain {
     public static void main(String[] args) {
         log.info("Enter Main");
         SpringApplicationBuilder builder = new SpringApplicationBuilder(TexasHoldemServerMain.class);
-        builder.headless(false); // So we will be able to use AWT (TrayIcon)
+        // builder.headless(false); // So we will be able to use AWT (TrayIcon)
         applicationContext = builder.run(args);
 
-        showTrayIcon();
+        // showTrayIcon();
         Runtime.getRuntime().addShutdownHook(new Thread(TexasHoldemServerMain::shutdown, "ServerShutdownThread"));
-        log.info("Exit Main");
+        // log.info("Exit Main");
     }
 
     private static void configureLog4j2() {
@@ -131,7 +131,7 @@ public class TexasHoldemServerMain {
             log.info("Shutting down Texas Holdem Server");
             try { applicationContext.getBean(GameService.class).shutdown(); } catch (Exception ignore) {}
             SpringApplication.exit(applicationContext, () -> 0);
-            SystemTray.getSystemTray().remove(trayIcon);
+            // SystemTray.getSystemTray().remove(trayIcon);
             LogManager.shutdown();
         }
     }

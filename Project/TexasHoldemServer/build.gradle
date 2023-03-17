@@ -11,9 +11,10 @@ buildscript {
     }
 }
 
+
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.4.3' // Spring boot, to have embedded web server and RESTful web services
+    id 'org.springframework.boot' version '2.5.3' // Spring boot, to have embedded web server and RESTful web services
     id 'io.spring.dependency-management' version '1.0.11.RELEASE' // Spring IO, to work with MySQL
     id "io.freefair.lombok" version "5.3.0" // Project lombok, to generate getters, setters, ctors etc.
 }
@@ -26,7 +27,7 @@ group 'org.hit.android.haim.texasholdem'
 version '1.0'
 
 ext {
-    springBootVer = '2.4.3'
+    springBootVer = '2.5.3'
     jjwtVer = '0.11.2'
     mysqlConnectorVer = '8.0.23'
     disruptorVer = '3.4.2'
@@ -51,12 +52,15 @@ configurations.all {
 
 dependencies {
     implementation project (":texas-holdem-common")
-    implementation "org.springframework.boot:spring-boot-starter-web:${springBootVer}" // Spring web for RESTful web services
+    implementation ("org.springframework.boot:spring-boot-starter-web:${springBootVer}"){
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+    } // Spring web for RESTful web services
     implementation "org.springframework.boot:spring-boot-starter-log4j2:${springBootVer}" // Working with log4j2
     implementation "org.springframework.boot:spring-boot-starter-security:${springBootVer}" // Encode passwords and authenticate users
     implementation "io.jsonwebtoken:jjwt-api:${jjwtVer}" // Working with JWT
     implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVer}" // Java beans to SQL and vice versa
     implementation "org.springframework.boot:spring-boot-starter-cache:${springBootVer}"
+    developmentOnly "io.springfox:springfox-swagger-ui:3.0.0"
     developmentOnly "org.springframework.boot:spring-boot-devtools" // reload class hot refresh
     runtimeOnly "org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVer}" // Encode passwords and authenticate users
     runtimeOnly "mysql:mysql-connector-java:${mysqlConnectorVer}" // Working with MySQL
@@ -71,7 +75,10 @@ dependencies {
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+
+    compile 'org.springframework.boot:spring-boot-starter-undertow:2.7.0'
 }
+
 
 test {
     useJUnitPlatform()
