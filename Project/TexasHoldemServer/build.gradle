@@ -77,7 +77,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
-    compile 'org.springframework.boot:spring-boot-starter-undertow:2.7.0'
+    implementation 'org.springframework.boot:spring-boot-starter-undertow:2.7.0'
 }
 
 
